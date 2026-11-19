@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Azriluwloh Okganda</title>
+    <style>
+        :root {
+            --accent: #0077b6;
+            --accent-light: #00b4d8;
+            --accent-dark: #005f8a;
+            --bg-color: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --text-color: #ffffff;
+            --text-muted: #cbd5e1;
+            --border-color: rgba(255, 255, 255, 0.15);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: radial-gradient(circle at top, #0a2a4a 0%, #0f172a 55%, #000000 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        section {
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            animation: fadeUp 0.8s ease both;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 4rem 0;
+        }
+        .hero-photo-wrap {
+            flex-shrink: 0;
+            position: relative;
+        }
+        .hero-photo-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            opacity: 0.6;
+        }
+        .profile-photo {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            display: block;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 119, 182, 0.6);
+        }
+        .hero-text { text-align: left; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 119, 182, 0.2);
+            border: 1px solid var(--accent);
+            color: #7cc4e8;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+        .hero-quote {
+            font-style: italic;
+            color: #94a3b8;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+            margin: 1.2rem 0 1.8rem;
+            font-size: 1rem;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            color: white;
+            padding: 0.85rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 20px rgba(0, 119, 182, 0.4);
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: #ffffff;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 1.8rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+        .card h3 { margin-bottom: 0.5rem; color: #ffffff; }
+        .card p { color: #e0e0e0; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .edu-item { margin-bottom: 1.8rem; }
+        .edu-item .year {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        .edu-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: white;
+        }
+        .edu-item p { color: #d1d1d1; }
+        .job-title {
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+            margin-bottom: 0.8rem;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 5px;
+            box-shadow: 0 0 10px var(--accent-light);
+        }
+        .job-title h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: white;
+        }
+        .job .location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+        .job ul, .org-list ul {
+            list-style: disc;
+            padding-left: 1.8rem;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .job ul li, .org-list ul li { margin-bottom: 0.6rem; }
+        .org-list ul li b { color: #fff; }
+        .achieve-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 1.2rem;
+        }
+        .achieve-badge {
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            color: white;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .achieve-item h3 {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        .achieve-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .skill { margin-bottom: 1.5rem; }
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        .bar-bg {
+            background: rgba(255,255,255,0.15);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            height: 100%;
+            border-radius: 10px;
+            width: 0;
+            animation: fillBar 1.5s ease forwards;
+            animation-delay: 0.5s;
+        }
+        @keyframes fillBar { to { width: var(--w); } }
+        .contact a { color: var(--accent-light); text-decoration: none; }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-size: 0.875rem;
+        }
+        @media (max-width: 900px) {
+            .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .hero { flex-direction: column; text-align: center; gap: 2rem; }
+            .hero-text { text-align: center; }
+            .hero-quote { border-left: none; border-top: 3px solid var(--accent); padding-left: 0; padding-top: 1rem; }
+            .profile-photo { width: 220px; height: 220px; }
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Azriluwloh Okganda</div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#education">Education</a>
+                <a href="#organizations">Organizations</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-photo-wrap">
+                <img src="foto.jpg" alt="Azriluwloh Okganda" class="profile-photo">
+            </div>
+            <div class="hero-text">
+                <div class="hero-badge">✦ PORTFOLIO</div>
+                <h1>Hello, I'm<br>Azriluwloh Okganda</h1>
+                <p>Software Engineering Student - SMKN 12 Jakarta</p>
+                <div class="hero-quote">"Technology is not just about code, it's about solving real problems."</div>
+                <a href="#contact" class="btn">Contact Me →</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a student of Software Engineering (Rekayasa Perangkat Lunak) from SMKN 12 Jakarta. I am interested in web programming, application development, and UI design. During my study, I learned HTML, CSS, JavaScript, PHP, and database management. I enjoy learning new technologies and building creative projects independently. Outside of academics, I am also active in school and community organizations, which taught me leadership, teamwork, and responsibility.</p>
+        </section>
+
+        <section id="education">
+            <div class="grid-3">
+                <div class="card">
+                    <h2>Education</h2>
+                    <div class="edu-item">
+                        <div class="year">2024 - Present</div>
+                        <h3>SMKN 12 Jakarta</h3>
+                        <p>Software Engineering (RPL)</p>
+                    </div>
+                    <div class="edu-item">
+                        <div class="year">2021 - 2024</div>
+                        <h3>MTS Al-Khairiyah Koja Jakarta Utara</h3>
+                    </div>
+                    <div class="edu-item">
+                        <div class="year">2015 - 2021</div>
+                        <h3>SDN RBU 19 Pagi</h3>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Internship Experience</h2>
+                    <div class="job">
+                        <div class="job-title">
+                            <div class="dot"></div>
+                            <h3>Ministry of Defense of the Republic of Indonesia</h3>
+                        </div>
+                        <div class="location">Directorate General of Defense Potential Building<br>Placed at TU - Directorate of Defense Industry</div>
+                        <ul>
+                            <li>Inputting document data</li>
+                            <li>Creating disposition sheets</li>
+                            <li>Creating cover letters (Surat Pengantar)</li>
+                            <li>Archiving letters and document files</li>
+                            <li>Distributing incoming and outgoing letters and files</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Skills</h2>
+                    <div class="skill">
+                        <div class="skill-top"><span>UI/UX Design</span><span>80%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="--w:80%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-top"><span>Microsoft Office</span><span>85%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="--w:85%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-top"><span>Data Management</span><span>80%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="--w:80%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-top"><span>Communication / Teamwork</span><span>90%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="--w:90%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="organizations">
+            <h2>Organizations & Achievements</h2>
+            <div class="grid-2">
+                <div class="card org-list">
+                    <h2 style="font-size: 1.4rem;">Organizations & Leadership</h2>
+                    <ul>
+                        <li><b>MPK & OSIS Management - MTS</b><br>Active as a member of the Student Council (MPK & OSIS) at MTS Al-Khairiyah.</li>
+                        <li><b>Head of All Extracurriculars - MTS</b><br>Trusted as the leader / coordinator for all extracurricular activities.</li>
+                        <li><b>Class Leader - MTS</b><br>Class president, responsible for coordinating classmates and class activities.</li>
+                        <li><b>Karang Taruna</b><br>Active member of Karang Taruna youth organization in the neighborhood.</li>
+                        <li><b>Ikatan Remaja Masjid (IRMAS)</b><br>Active member of the Mosque Youth Association, involved in religious and social activities.</li>
+                        <li><b>OSIS Member - SMK</b><br>Member of OSIS at SMKN 12 Jakarta.</li>
+                        <li><b>Extracurricular Management - SMK</b><br>Committee / management member of extracurricular activities at SMK.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h2 style="font-size: 1.4rem;">Achievements</h2>
+                    <div class="achieve-item">
+                        <div class="achieve-badge">🥈 2ND PLACE</div>
+                        <div>
+                            <h3>Marching Band Competition - Mayor's Cup</h3>
+                            <p>Drumband Championship - Walikota Cup</p>
+                        </div>
+                    </div>
+                    <div class="achieve-item">
+                        <div class="achieve-badge">🏆 NATIONAL</div>
+                        <div>
+                            <h3>Silat Championship - National Level</h3>
+                            <p>Winner / Champion in Pencak Silat at National Level (MTS)</p>
+                        </div>
+                    </div>
+                    <div class="achieve-item">
+                        <div class="achieve-badge">🥈 2ND PLACE</div>
+                        <div>
+                            <h3>Hadroh Competition</h3>
+                            <p>2nd Place Winner in Hadroh Competition</p>
+                        </div>
+                    </div>
+                    <div class="achieve-item">
+                        <div class="achieve-badge">🥇 1ST HOPE</div>
+                        <div>
+                            <h3>Yel-Yel Competition - Napak Tilas 2025</h3>
+                            <p>1st Hope Winner (Juara 1 Harapan) in Yel-Yel Competition</p>
+                        </div>
+                    </div>
+                    <div class="achieve-item">
+                        <div class="achieve-badge">📖 TAHFIDZ</div>
+                        <div>
+                            <h3>Tahfidz Graduation - Juz 30</h3>
+                            <p>Wisuda Tahfidz Juz 30 at MTS Al-Khairiyah</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 0.5rem; color: #cbd5e1; font-size: 0.95rem;">These experiences taught me discipline, leadership, and how to perform under pressure, both on stage and in a team.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <p>Interested in collaborating or want to get to know me? You can contact me through:</p>
+            <p style="margin-top: 1rem;">
+                📧 Email: <a href="mailto:azriluwlohuwoh@gmail.com">azriluwlohuwoh@gmail.com</a><br>
+                📱 Instagram: <a href="https://instagram.com/zrilwlhokgda" target="_blank">@zrilwlhokgda</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Azriluwloh Okganda. Made with HTML & CSS.</p>
+    </footer>
+
+</body>
+</html>
